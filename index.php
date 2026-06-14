@@ -91,7 +91,7 @@ $carteira = $_SESSION['carteira'];
                 </div>
 
                 <div class="card shadow-sm">
-                    <div class="card-header bg-secondary text-white fw-bold">Extrato Consolidado (Histórico)</div>
+                    <div class="card-header bg-secondary text-white fw-bold">Histórico</div>
                     <div class="card-body p-0">
                         <table class="table table-hover table-striped m-0">
                             <thead class="table-dark">

@@ -19,6 +19,6 @@ abstract class Transacao {
     public function getData(): string { return $this->data; }
     public function getDescricao(): string { return $this->descricao; }
 
-    // Método polimórfico que define se é Entrada ou Saída
+    
     abstract public function getTipo(): string;
 }

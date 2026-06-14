@@ -17,9 +17,8 @@ class Carteira {
         if ($tipo === "Entrada") {
             $this->saldo += $transacao->getValor();
         } elseif ($transacao->getTipo() === "Saída") {
-            // RN01 & RNF04 - Impedir saldo negativo disparando Exception
             if ($transacao->getValor() > $this->saldo) {
-                throw new Exception("Saldo insuficiente para realizar esta despesa!");
+                throw new Exception("saldo insuficiente para realizar esta despesa");
             }
             $this->saldo -= $transacao->getValor();
         }
