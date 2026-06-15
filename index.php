@@ -7,6 +7,7 @@ require_once 'Receita.php';
 require_once 'Despesa.php';
 require_once 'Carteira.php';
 
+
 session_start();
 
 if (!isset($_SESSION['carteira'])) {
