@@ -11,9 +11,6 @@ class CategoriaDAO
     {
         $this->pdo = $pdo;
     }
-
-    // Evita criar categoria duplicada: se já existe uma com o mesmo
-    // nome e tipo, reaproveita ela.
     public function buscarOuCriar(string $nome, string $tipo): Categoria
     {
         $stmt = $this->pdo->prepare(

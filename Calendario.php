@@ -32,7 +32,6 @@ foreach ($transacaoDAO->buscarPorCarteira($carteira->getId()) as $t) {
 $anoSelecionado = (int)($_GET['ano'] ?? date('Y'));
 $mesesNome = [1 => 'JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO'];
 
-// Agrupa transações por data (YYYY-MM-DD)
 $transacoesPorData = [];
 foreach ($carteira->getTransacoes() as $t) {
     $transacoesPorData[$t->getData()][] = $t;

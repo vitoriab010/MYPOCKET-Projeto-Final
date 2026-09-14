@@ -36,9 +36,6 @@ class Carteira {
         }
         $this->transacoes[] = $transacao;
     }
-
-    // adiciona uma transação já existente (vinda do banco), sem mexer no saldo,
-    // pois o saldo nesse caso já vem carregado do banco (saldo_atual)
     public function carregarTransacao(Transacao $transacao): void {
         $this->transacoes[] = $transacao;
     }

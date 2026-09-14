@@ -10,8 +10,6 @@ class FechamentoMensalDAO
         $this->pdo = $pdo;
     }
 
-    // Salva (ou atualiza, se já existir) o fechamento de um mês/carteira.
-    // É chamado toda vez que o Calendario.php é aberto, recalculando os totais.
     public function salvar(int $idCarteira, string $mesAno, float $totalEntradas, float $totalSaidas, float $totalDiario, float $performance): void
     {
         $stmt = $this->pdo->prepare(

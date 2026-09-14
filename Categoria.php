@@ -4,7 +4,7 @@ declare(strict_types=1);
 class Categoria {
     private int $id;
     private string $nome;
-    private string $tipo; // "Entrada" ou "Saída"
+    private string $tipo; 
 
     public function __construct(int $id, string $nome, string $tipo) {
         $this->id = $id;
