@@ -30,8 +30,18 @@ if ($acao === 'excluir') {
     $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     if ($id) {
         try {
-            $transacaoDAO->excluir($id);
-            $_SESSION['mensagem_sucesso'] = "Transação excluída com sucesso!";
+            $transacaoAntiga = $transacaoDAO->buscarPorId($id);
+            if ($transacaoAntiga) {
+                $tipoAntigo = $transacaoAntiga['tipo_transacao'] === 'receita' ? 'Entrada' : 'Saída';
+                $carteira->reverterTransacao($tipoAntigo, (float)$transacaoAntiga['valor']);
+
+                $transacaoDAO->excluir($id);
+                $carteiraDAO->atualizarSaldo($carteira->getId(), $carteira->getSaldo());
+
+                $_SESSION['mensagem_sucesso'] = "Transação excluída com sucesso!";
+            } else {
+                $_SESSION['mensagem_erro'] = "Transação não encontrada.";
+            }
         } catch (Exception $e) {
             $_SESSION['mensagem_erro'] = "Erro ao excluir transação: " . $e->getMessage();
         }
@@ -63,8 +73,6 @@ if ($acao === 'editar') {
                 $categoria = $categoriaDAO->buscarOuCriar($isDiario ? 'Diário' : $nomeCategoria, 'saida');
                 $transacaoNova = new Despesa($id, $valor, $data, $descricao, $carteira->getId(), $categoria, $isDiario);
             }
-
-            // adicionarTransacao() aplica o novo valor e valida saldo insuficiente, igual no cadastro
             $carteira->adicionarTransacao($transacaoNova);
 
             $transacaoDAO->atualizar($id, $transacaoNova, $categoria);
